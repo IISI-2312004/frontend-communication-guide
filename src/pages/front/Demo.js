@@ -1,12 +1,6 @@
-import WrapLayout from "@/components/WrapLayout";
-import AppFormTable from "@/components/AppFormTable";
-import { failure_sw, success_sw, warning_sw } from "@/utils/swal";
-import AppButton from "@/components/AppButton";
-import rsdtoImage from "@/assets/image/msgRsDto.png";
-import CheckboxGroupExample from "@/components/CheckboxGroupExample";
-import AppCodePanel from "@/components/AppCodePanel";
 import AppTabs, { CustomTabPanel } from "@/components/AppTabs";
-import BakendSection from "./demo/BakendSection";
+import BakendSection from "./components/BakendSection";
+import SASection from "./components/SASection";
 function Demo() {
   return (
     <>
@@ -23,7 +17,9 @@ function Demo() {
             </div>
           </CustomTabPanel>
           <CustomTabPanel>
-            <div>這是第二個頁面的內容</div>
+            <div>
+              <SASection />
+            </div>
           </CustomTabPanel>
         </AppTabs>
       </div>

@@ -1,5 +1,6 @@
 {
-  "name": "react-final-record",
+  "name": "react-demo",
+  "homepage": "http://IISI-2312004.github.io/demo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -38,7 +39,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

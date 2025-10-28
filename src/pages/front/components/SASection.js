@@ -5,21 +5,20 @@ import AppButton from "@/components/AppButton";
 import rsdtoImage from "@/assets/image/msgRsDto.png";
 import CheckboxGroupExample from "@/components/CheckboxGroupExample";
 import AppCodePanel from "@/components/AppCodePanel";
-// import AppTabs from "@/components/AppTabs";
 function BakendSection() {
   return (
     <>
       <div className="flex flex-col gap-y-5">
         <WrapLayout>
-          <h3 className="text-h4 mb-4 ">1. 為什麼要先對齊 API 格式</h3>
+          <h3 className="text-h4 mb-4 ">1. 為什麼要先對齊 文件 格式</h3>
           <h4 className="text-h5 mb-4 pl-2 border-blue-04 border-l-[4px] leading-[1]">
-            前端和後端最大的溝通成本，不在技術，而在「理解不同」。
+            前端和SA最大的溝通成本在「理解不同」。
           </h4>
           <h5 className="text-h6 mb-1">常見問題</h5>
           <ul className="pl-5 list-disc">
-            <li>日期格式不一（西元／民國）</li>
-            <li>傳參有時包 data、有時沒有</li>
-            <li>錯誤訊息結構不一致</li>
+            <li>必填欄位標示</li>
+            <li>下拉選單API</li>
+            <li>?</li>
           </ul>
         </WrapLayout>
         <WrapLayout>
