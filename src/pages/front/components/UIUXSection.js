@@ -3,34 +3,31 @@ import AppFormTable from "@/components/AppFormTable";
 import { failure_sw, success_sw, warning_sw } from "@/utils/swal";
 import AppButton from "@/components/AppButton";
 import rsdtoImage from "@/assets/image/msgRsDto.png";
-import formData1 from "@/assets/image/formData1.png";
-import formData2 from "@/assets/image/formData2.png";
 import CheckboxGroupExample from "@/components/CheckboxGroupExample";
 import AppCodePanel from "@/components/AppCodePanel";
-import AppTitle from "@/components/AppTitle";
 function BakendSection() {
   return (
     <>
       <div className="flex flex-col gap-y-5">
         <WrapLayout>
-          <h3 className="text-h4 mb-4 ">1. 為什麼要先對齊 API 格式</h3>
-          <AppTitle>前端和後端最大的溝通成本，不在技術，而在「理解不同」。</AppTitle>
+          <h3 className="text-h4 mb-4 ">1. 為什麼要先對齊 文件 格式</h3>
+          <h4 className="text-h5 mb-4 pl-2 border-blue-04 borderW-l-[4px] leading-[1]">
+            前端和SA最大的溝通成本在「理解不同」。
+          </h4>
           <h5 className="text-h6 mb-1">常見問題</h5>
           <ul className="pl-5 list-disc">
-            <li>日期格式不一（西元／民國）</li>
-            <li>傳參有時包 data、有時沒有</li>
-            <li>錯誤訊息結構不一致</li>
+            <li>資料何時載入？進入畫面自動查？還是按查詢才查？</li>
+            <li>是否可返回保持原狀 列表→明細→回列表是否保留查詢條件？</li>
+            <li>驗證觸發 blur/ 最後送出</li>
           </ul>
         </WrapLayout>
         <WrapLayout>
           <h3 className="text-h3 mb-4">2. 日期格式統一</h3>
-          <h5 className="text-h5 mb-1">常見問題</h5>
-          <ul className="pl-5 list-disc mb-4">
-            <li>查詢條件</li>
-          </ul>
           <div className="grid grid-cols-2 gap-x-4">
             <div>
-              <AppTitle>使用民國年字串。(通常政府專案使用)</AppTitle>
+              <h4 className="text-h4 mb-4 pl-2 border-blue-04 border-l-[4px] leading-[1]">
+                使用民國年字串。(通常政府專案使用)
+              </h4>
               <AppFormTable className="mb-10">
                 <tr>
                   <th className="w-[140px]">年</th>
@@ -55,7 +52,9 @@ function BakendSection() {
               </AppFormTable>
             </div>
             <div>
-              <AppTitle>使用西元年字串。</AppTitle>
+              <h4 className="text-h4 mb-4 pl-2 border-blue-04 border-l-[4px] leading-[1]">
+                使用西元年字串。
+              </h4>
               <AppFormTable>
                 <tr>
                   <th className="w-[140px]">年</th>
@@ -83,16 +82,17 @@ function BakendSection() {
         </WrapLayout>
         <WrapLayout>
           <h3 className="text-h3 mb-4">3. 分頁資料格式</h3>
-          <AppTitle>
+          <h4 className="text-h4 mb-4 pl-2 border-blue-04 border-l-[4px] leading-[1]">
             回傳page(頁數) , size(每頁筆數) , totalPages(總頁數) , totalElements(總筆數) 以及
             content(資料陣列)
-          </AppTitle>
+          </h4>
           <h5 className="text-h5 mb-1">常見問題</h5>
           <ul className="pl-5 list-disc mb-4">
             <li>page從 0 or 1 開始?</li>
           </ul>
-          <AppCodePanel>
-            {`{
+          <pre className="bg-[black] text-white w-fit p-4 rounded">
+            <code>
+              {`{
   "statusCode": "200",
   "message": "執行成功",
   "data": {
@@ -105,7 +105,8 @@ function BakendSection() {
     }
   }
 }`}
-          </AppCodePanel>
+            </code>
+          </pre>
         </WrapLayout>
         <WrapLayout>
           <h3 className="text-h3 mb-4">4. 訊息處理</h3>
@@ -245,16 +246,7 @@ function BakendSection() {
             <tbody>
               <tr>
                 <td>FormData</td>
-                <td>
-                  <ul className="list-disc pl-5">
-                    <li>適合上傳檔案，支援多種資料類型</li>
-                    <li>其他表單資料請後端包成一個Object</li>
-                  </ul>
-                  <p className="mt-3 font-bold">有包物件</p>
-                  <img src={formData2} />
-                  <p className="mt-3 font-bold">沒包物件</p>
-                  <img src={formData1} />
-                </td>
+                <td>適合上傳檔案，支援多種資料類型</td>
               </tr>
               <tr>
                 <td>Base64</td>
@@ -262,101 +254,23 @@ function BakendSection() {
               </tr>
             </tbody>
           </AppFormTable>
+          {/* <ul className="pl-5 list-disc mb-4">
+            <li>FormData</li>
+            <li>Base64</li>
+          </ul> */}
         </WrapLayout>
         <WrapLayout>
-          <h3 className="text-h3 mb-4">9.下載</h3>
+          <h3 className="text-h3 mb-4">8.上傳 / 下載</h3>
+          <h5 className="text-h5 mb-1">上傳格式：</h5>
+          <ul className="pl-5 list-disc mb-4">
+            <li>FormData</li>
+            <li>Base64</li>
+          </ul>
           <h5 className="text-h5 mb-1">回傳格式：</h5>
-          <AppFormTable>
-            <thead>
-              <tr>
-                <th className="w-[150px]">格式</th>
-                <th>說明</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Base64</td>
-                <td>
-                  適合小型檔案下載
-                  <p className="font-bold">優點</p>
-                  <ul className="pl-5 list-disc">
-                    <li>可以回傳其他資料 ex:成功訊息</li>
-                  </ul>
-                  <p className="font-bold">缺點</p>
-                  <ul className="pl-5 list-disc">
-                    <li>檔案變大 33%</li>
-                    <li>記憶體負擔大</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>application/octet-stream</td>
-                <td>
-                  適合大型檔案下載(需要額外處理 response header Content-Disposition 來取得檔名)
-                  <p className="font-bold">優點</p>
-                  <ul className="pl-5 list-disc">
-                    <li>效能最佳</li>
-                    <li>支援大檔案</li>
-                    <li>下載體驗好</li>
-                  </ul>
-                  <p className="font-bold">缺點</p>
-                  <ul className="pl-5 list-disc">
-                    <li>無法回傳其他訊息</li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </AppFormTable>
-        </WrapLayout>
-        <WrapLayout>
-          <h3 className="text-h3 mb-4">10.下拉選單API</h3>
-          <h5 className="text-h5 mb-1">常見問題</h5>
-          <ul className="pl-5 list-disc">
-            <li>是否有統一的代碼檔？能否共用同一支 API，依參數回傳不同選項？</li>
-            <li>每個下拉選單都需要個別 API 嗎？</li>
-            <li>在新增/編輯提交時，是否同時傳 value + label？還是只傳 value？</li>
-          </ul>
-
-          <h5 className="text-h5 mb-1 mt-4">建議規範</h5>
-          <ul className="pl-5 list-disc">
+          <ul className="pl-5 list-disc mb-4">
+            <li>Base64</li>
             <li>
-              統一使用代碼檔 API：<code>/api/code?type=agency</code>
-            </li>
-            <li>
-              回傳格式應固定：<code>value / label</code>
-            </li>
-            <li>
-              提交時統一只傳 <code>value</code>，避免資料不同步
-            </li>
-          </ul>
-        </WrapLayout>
-        <WrapLayout>
-          <h3 className="text-h3 mb-4">11. 回傳 JSON 必須與編輯/新增 JSON 命名一致</h3>
-
-          <h5 className="text-h5 mb-1">踩坑記錄</h5>
-          <ul className="pl-5 list-disc">
-            <li>
-              後端回傳的 JSON 欄位名稱與前端編輯/新增使用的欄位名稱不一致，
-              導致前端在進入編輯頁時需額外撰寫欄位對應或轉換邏輯。
-            </li>
-            <li>若欄位名稱不同，容易造成「查詢結果顯示正常、但送出更新時失敗」的問題。</li>
-          </ul>
-
-          <h5 className="text-h5 mb-1 mt-4">補充說明</h5>
-          <ul className="pl-5 list-disc">
-            <li>
-              例如：查詢回傳欄位為 <code>agency_name</code>，但編輯送出需使用{" "}
-              <code>agencyName</code>。
-            </li>
-            <li>前端必須自行轉換 key，增加維護成本與錯誤風險。</li>
-            <li>若未統一命名規則（snake_case / camelCase），前後端皆容易出現解析錯誤。</li>
-          </ul>
-
-          <h5 className="text-h5 mb-1 mt-4">建議做法</h5>
-          <ul className="pl-5 list-disc">
-            <li>回傳 JSON 與送出 JSON 結構與欄位命名應完全一致。</li>
-            <li>
-              前後端共同定義欄位命名規範（建議使用 <code>camelCase</code>）。
+              application/octet-stream(需要額外處理 response header Content-Disposition 來取得檔名)
             </li>
           </ul>
         </WrapLayout>
