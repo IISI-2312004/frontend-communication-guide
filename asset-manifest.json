@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/frontend-communication-guide/static/css/main.172b0523.css",
-    "main.js": "/frontend-communication-guide/static/js/main.255b0c1a.js",
+    "main.js": "/frontend-communication-guide/static/js/main.9868ac83.js",
     "static/js/453.b990e3b9.chunk.js": "/frontend-communication-guide/static/js/453.b990e3b9.chunk.js",
     "static/media/msgRsDto.png": "/frontend-communication-guide/static/media/msgRsDto.79a0b82291c22466b823.png",
     "static/media/formData1.png": "/frontend-communication-guide/static/media/formData1.23d63de03d8fbc93864c.png",
@@ -12,11 +12,11 @@
     "static/media/success-icon.svg": "/frontend-communication-guide/static/media/success-icon.0a30bca046df6111af6b5eab84d7e3d1.svg",
     "static/media/warning-icon.svg": "/frontend-communication-guide/static/media/warning-icon.14b737a8f3a80a79110ff31ff23267f5.svg",
     "main.172b0523.css.map": "/frontend-communication-guide/static/css/main.172b0523.css.map",
-    "main.255b0c1a.js.map": "/frontend-communication-guide/static/js/main.255b0c1a.js.map",
+    "main.9868ac83.js.map": "/frontend-communication-guide/static/js/main.9868ac83.js.map",
     "453.b990e3b9.chunk.js.map": "/frontend-communication-guide/static/js/453.b990e3b9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.172b0523.css",
-    "static/js/main.255b0c1a.js"
+    "static/js/main.9868ac83.js"
   ]
 }
