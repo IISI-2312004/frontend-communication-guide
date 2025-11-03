@@ -41,12 +41,7 @@ export default function AppTabs({ children, tabs = ["Item One", "Item Two", "Ite
 
   return (
     <div>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="basic tabs example"
-        textColor="secondary"
-        indicatorColor="secondary">
+      <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
         {tabs.map((label, index) => (
           <Tab key={index} label={label} {...a11yProps(index)} />
         ))}

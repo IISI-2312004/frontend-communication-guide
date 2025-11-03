@@ -1,53 +1,20 @@
 import WrapLayout from "@/components/WrapLayout";
 import AppFormTable from "@/components/AppFormTable";
-function BakendSection() {
+function SASection() {
   return (
     <>
       <div className="flex flex-col gap-y-5">
         <WrapLayout>
-          <h3 className="text-h4 mb-4 ">1. 為什麼要先對齊 文件 格式</h3>
-          <h4 className="text-h5 mb-4 pl-2 border-blue-04 border-l-[4px] leading-[1]">
-            前端和SA最大的溝通成本在「理解不同」。
-          </h4>
-          <h5 className="text-h6 mb-1">常見問題</h5>
+          <h3 className="text-h3 mb-4 ">1. 文件常遺漏內容</h3>
           <ul className="pl-5 list-disc">
-            <li>必填欄位標示</li>
             <li>下拉選單API</li>
-            <li>欄位名稱</li>
-            <li>參數名稱</li>
-            <li>API NAME</li>
-            <li>回傳JSON(前端可先偷跑)</li>
+            <li>必填欄位</li>
+            <li>多選型別寫錯</li>
+            <li>要求前端傳送value+label</li>
           </ul>
         </WrapLayout>
         <WrapLayout>
-          <h3 className="text-h3 mb-4">2. 參數定義（Input/Output）</h3>
-          <div>
-            <AppFormTable className="mb-10">
-              <tr>
-                <th className="w-[140px]">參數名稱</th>
-                <td>與後端欄位一致（避免前後端名稱不同）</td>
-              </tr>
-              <tr>
-                <th>資料型別</th>
-                <td>string / number / array / boolean / date…</td>
-              </tr>
-              <tr>
-                <th>是否必填</th>
-                <td>✅ 必填 / ❌ 選填</td>
-              </tr>
-              <tr>
-                <th>顯示格式</th>
-                <td>例如日期：YYYY/MM/DD、千分位、代碼轉文字</td>
-              </tr>
-              <tr>
-                <th>欄位長度限制</th>
-                <td>文字框長度、輸入規則</td>
-              </tr>
-            </AppFormTable>
-          </div>
-        </WrapLayout>
-        <WrapLayout>
-          <h3 className="text-h3 mb-4">3. API 介接文件內容</h3>
+          <h3 className="text-h3 mb-4">2. 文件內容</h3>
           <div>
             <AppFormTable className="mb-10">
               <tr>
@@ -58,12 +25,66 @@ function BakendSection() {
                 <th>Method</th>
                 <td>GET / POST</td>
               </tr>
+              <tr>
+                <th className="w-[140px]">欄位</th>
+                <td>
+                  <ul className="pl-5 list-disc">
+                    <li>對應參數名稱</li>
+                    <li>資料型別 string / number / array / boolean</li>
+                    <li>是否必填</li>
+                    <li>長度限制 / 其他限制</li>
+                    <li>顯示格式 例如日期：YYY/MM/DD、千分位、代碼轉文字</li>
+                  </ul>
+                </td>
+              </tr>
             </AppFormTable>
           </div>
+        </WrapLayout>
+        <WrapLayout>
+          <h3 className="text-h3 mb-4">3. 行為模式</h3>
+          <div>
+            <AppFormTable className="mb-10">
+              <tr>
+                <th className="w-[140px]">資料載入時機</th>
+                <td>
+                  <ul className="pl-5 list-disc">
+                    <li>畫面載入時</li>
+                    <li>點擊按鈕時</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>表單驗證</th>
+                <td>
+                  <ul className="pl-5 list-disc">
+                    <li>即時驗證（onChange/onBlur）</li>
+                    <li>送出驗證（onSubmit）</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>返回上一頁時</th>
+                <td>
+                  <ul className="pl-5 list-disc">
+                    <li>保留查詢狀態</li>
+                    <li>重置查詢狀態</li>
+                  </ul>
+                </td>
+              </tr>
+            </AppFormTable>
+          </div>
+        </WrapLayout>
+        <WrapLayout>
+          <h3 className="text-h3 mb-4">4. 表格</h3>
+          <ul className="pl-5 list-disc mb-4">
+            <li>置中</li>
+            <li>置左</li>
+            <li>置右</li>
+          </ul>
         </WrapLayout>
       </div>
     </>
   );
 }
 
-export default BakendSection;
+export default SASection;

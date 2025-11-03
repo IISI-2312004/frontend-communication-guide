@@ -13,7 +13,7 @@ function BakendSection() {
     <>
       <div className="flex flex-col gap-y-5">
         <WrapLayout>
-          <h3 className="text-h4 mb-4 ">1. 為什麼要先對齊 API 格式</h3>
+          <h3 className="text-h3 mb-4 ">1. 為什麼要先對齊 API 格式</h3>
           <AppTitle>前端和後端最大的溝通成本，不在技術，而在「理解不同」。</AppTitle>
           <h5 className="text-h6 mb-1">常見問題</h5>
           <ul className="pl-5 list-disc">
@@ -26,7 +26,7 @@ function BakendSection() {
           <h3 className="text-h3 mb-4">2. 日期格式統一</h3>
           <h5 className="text-h5 mb-1">常見問題</h5>
           <ul className="pl-5 list-disc mb-4">
-            <li>查詢條件</li>
+            <li>UI畫面是年月日後端卻要求補時分秒</li>
           </ul>
           <div className="grid grid-cols-2 gap-x-4">
             <div>
@@ -91,8 +91,9 @@ function BakendSection() {
           <ul className="pl-5 list-disc mb-4">
             <li>page從 0 or 1 開始?</li>
           </ul>
-          <AppCodePanel>
-            {`{
+          <div className="grid grid-cols-2 gap-4">
+            <AppCodePanel>
+              {`{
   "statusCode": "200",
   "message": "執行成功",
   "data": {
@@ -105,28 +106,32 @@ function BakendSection() {
     }
   }
 }`}
-          </AppCodePanel>
+            </AppCodePanel>
+            <AppCodePanel>
+              {`{
+  "statusCode": "200",
+  "message": "執行成功",
+  "data": {
+    "page": 1,
+    "size": 10,
+    "totalPages": 4,
+    "totalElements": 35,
+    "content": [ ... ]
+    }
+}`}
+            </AppCodePanel>
+          </div>
         </WrapLayout>
         <WrapLayout>
           <h3 className="text-h3 mb-4">4. 訊息處理</h3>
           <h5 className="text-h5 mb-1">常見問題</h5>
           <ul className="pl-5 list-disc mb-4">
+            <li>是否有副標題?</li>
             <li>訊息是否自動消失?</li>
             <li>是否需要關閉按鈕?</li>
-            <li>是否有副標題?</li>
+            <li>通常是新增修改刪除會跳出訊息，那查詢需要嗎?</li>
           </ul>
-          <h5 className="text-h5 mb-1">踩坑紀錄</h5>
-          <ul className="pl-5 list-disc mb-4">
-            <li>
-              資安署專案初期並未規劃副標題欄位，後續需求新增時，後端回應無法支援 subMessage 欄位
-            </li>
-            <li>
-              前端依據 responseBody 的 statusCode 判斷回傳狀態與顯示對應 icon，但後端在回傳
-              statusCode = 500 時，並未實際拋出 HTTP 500 例外。
-              <img src={rsdtoImage} alt="RsDTO format" className="mt-2 w-[300px]" />
-            </li>
-          </ul>
-          <div className="grid grid-cols-3 gap-x-4">
+          <div className="grid grid-cols-3 gap-x-4 mb-4">
             <div>
               <AppButton
                 className="mb-4"
@@ -145,24 +150,7 @@ function BakendSection() {
 `}
               </AppCodePanel>
             </div>
-            <div>
-              <AppButton
-                className="mb-4"
-                danger
-                onClick={() => {
-                  failure_sw("新增失敗");
-                }}>
-                點我看錯誤訊息
-              </AppButton>
-              <AppCodePanel>
-                {`{
-  "statusCode": "500", "400" or 其他
-  "message": "新增失敗",
-  "data": { ... }
-}
-`}
-              </AppCodePanel>
-            </div>
+
             <div>
               <AppButton
                 className="mb-4"
@@ -181,7 +169,36 @@ function BakendSection() {
 `}
               </AppCodePanel>
             </div>
+            <div>
+              <AppButton
+                className="mb-4"
+                danger
+                onClick={() => {
+                  failure_sw("新增失敗", "姓名欄位不可為空，請重新輸入");
+                }}>
+                點我看錯誤訊息
+              </AppButton>
+              <AppCodePanel>
+                {`{
+  "statusCode": "500", "400" or 其他
+  "message": "新增失敗",
+  "data": { ... }
+}
+`}
+              </AppCodePanel>
+            </div>
           </div>
+          <h5 className="text-h5 mb-1">踩坑紀錄</h5>
+          <ul className="pl-5 list-disc mb-4">
+            <li className="mb-4">
+              前端依據 responseBody 的 statusCode 判斷回傳狀態與顯示對應 icon，但後端在回傳
+              statusCode = 500 時，並未實際拋出 HTTP 500 例外。
+              <img src={rsdtoImage} alt="RsDTO format" className="mt-2 w-[300px]" />
+            </li>
+            <li>
+              資安署專案初期並未規劃副標題欄位，後續需求新增時，後端回應無法支援 subMessage 欄位
+            </li>
+          </ul>
         </WrapLayout>
         <WrapLayout>
           <h3 className="text-h3 mb-4">5. 多選傳遞格式統一</h3>
@@ -316,7 +333,6 @@ function BakendSection() {
             <li>每個下拉選單都需要個別 API 嗎？</li>
             <li>在新增/編輯提交時，是否同時傳 value + label？還是只傳 value？</li>
           </ul>
-
           <h5 className="text-h5 mb-1 mt-4">建議規範</h5>
           <ul className="pl-5 list-disc">
             <li>
@@ -331,33 +347,70 @@ function BakendSection() {
           </ul>
         </WrapLayout>
         <WrapLayout>
-          <h3 className="text-h3 mb-4">11. 回傳 JSON 必須與編輯/新增 JSON 命名一致</h3>
-
+          <h3 className="text-h3 mb-4">11. 回傳內容(RsDTO)</h3>
+          <h5 className="text-h5 mb-1">常見問題</h5>
+          <ul className="pl-5 list-disc mb-4">
+            <li>表格要顯示label，後端可以同時回傳value+label嗎</li>
+          </ul>
+          <AppFormTable className="mb-4">
+            <thead>
+              <tr>
+                <th className="w-[300px]">情境</th>
+                <th>建議</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>僅需 join 一張代碼表、筆數少</td>
+                <td>後端直接回傳 value + label（推薦）</td>
+              </tr>
+              <tr>
+                <td>需跨多張表、資料量大或效能敏感</td>
+                <td>前端呼叫代碼查詢 API，自行轉換 label</td>
+              </tr>
+            </tbody>
+          </AppFormTable>
           <h5 className="text-h5 mb-1">踩坑記錄</h5>
-          <ul className="pl-5 list-disc">
+          <ul className="pl-5 list-disc mb-4">
             <li>
-              後端回傳的 JSON 欄位名稱與前端編輯/新增使用的欄位名稱不一致，
+              後端回傳的內容與新增/編輯使用的欄位名稱不一致，
               導致前端在進入編輯頁時需額外撰寫欄位對應或轉換邏輯。
             </li>
-            <li>若欄位名稱不同，容易造成「查詢結果顯示正常、但送出更新時失敗」的問題。</li>
           </ul>
-
-          <h5 className="text-h5 mb-1 mt-4">補充說明</h5>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="font-bold">回傳內容</p>
+              <AppCodePanel>
+                {`{
+  "statusCode": "200",
+  "message": "執行成功",
+  "data": {
+    "name": "John Doe",
+    "age": 30,
+    "email": "xxx@gmail.com"
+}`}
+              </AppCodePanel>
+            </div>
+            <div>
+              <p className="font-bold">新增/編輯內容</p>
+              <AppCodePanel>
+                {`{
+  "data": {
+    "userName": "John Doe",
+    "userAge": 30,
+    "userEmail": "xxx@gmail.com"
+}`}
+              </AppCodePanel>
+            </div>
+          </div>
+        </WrapLayout>
+        <WrapLayout>
+          <h3 className="text-h3 mb-4">12.測試環境</h3>
+          <h5 className="text-h5 mb-1 mt-4">常見問題</h5>
           <ul className="pl-5 list-disc">
-            <li>
-              例如：查詢回傳欄位為 <code>agency_name</code>，但編輯送出需使用{" "}
-              <code>agencyName</code>。
-            </li>
-            <li>前端必須自行轉換 key，增加維護成本與錯誤風險。</li>
-            <li>若未統一命名規則（snake_case / camelCase），前後端皆容易出現解析錯誤。</li>
-          </ul>
-
-          <h5 className="text-h5 mb-1 mt-4">建議做法</h5>
-          <ul className="pl-5 list-disc">
-            <li>回傳 JSON 與送出 JSON 結構與欄位命名應完全一致。</li>
-            <li>
-              前後端共同定義欄位命名規範（建議使用 <code>camelCase</code>）。
-            </li>
+            <li>Swagger網址</li>
+            <li>是否有cicd?</li>
+            <li>請後端在確認程式已經部屬到sit再叫前端測</li>
           </ul>
         </WrapLayout>
       </div>
