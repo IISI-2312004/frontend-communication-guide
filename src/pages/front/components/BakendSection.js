@@ -277,21 +277,7 @@ function BakendSection() {
               <tr>
                 <td>Base64</td>
                 <td>
-                  <p className="mb-1">適合小型檔案，將檔案轉為字串格式</p>
-                  <p className="font-bold">回傳範例格式:</p>
-                  <div className="w-[650px]">
-                    <AppCodePanel>
-                      {`{
-    "statusCode": "200",
-    "messageCode": null,
-    "message": "執行成功",
-    "data": {
-        "exportFileData": "77u/LCwsLCzlpKfkuovntIDos4fmlpnmmI....,
-        "exportFileName": "大事紀資料明細資料表.csv",
-    }
-}`}
-                    </AppCodePanel>
-                  </div>
+                  <p>適合小型檔案，將檔案轉為字串格式</p>
                 </td>
               </tr>
             </tbody>
@@ -317,10 +303,24 @@ function BakendSection() {
                     <li>可以回傳其他資料 ex:成功訊息</li>
                   </ul>
                   <p className="font-bold">缺點</p>
-                  <ul className="pl-5 list-disc">
+                  <ul className="pl-5 list-disc mb-1">
                     <li>檔案變大 33%</li>
                     <li>記憶體負擔大</li>
                   </ul>
+                  <p className="font-bold">回傳範例格式:</p>
+                  <div className="w-[650px]">
+                    <AppCodePanel>
+                      {`{
+    "statusCode": "200",
+    "messageCode": null,
+    "message": "執行成功",
+    "data": {
+        "exportFileData": "77u/LCwsLCzlpKfkuovntIDos4fmlpnmmI....,
+        "exportFileName": "大事紀資料明細資料表.csv",
+    }
+}`}
+                    </AppCodePanel>
+                  </div>
                 </td>
               </tr>
               <tr>
