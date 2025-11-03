@@ -15,11 +15,11 @@ function BakendSection() {
         <WrapLayout>
           <h3 className="text-h3 mb-4 ">1. 為什麼要先對齊 API 格式</h3>
           <AppTitle>前端和後端最大的溝通成本，不在技術，而在「理解不同」。</AppTitle>
-          <h5 className="text-h6 mb-1">常見問題</h5>
+          <h5 className="text-h5 mb-1">常見問題</h5>
           <ul className="pl-5 list-disc">
+            <li>錯誤訊息結構不一致(message／rtnMsg／沒回傳)</li>
             <li>日期格式不一（西元／民國）</li>
             <li>傳參有時包 data、有時沒有</li>
-            <li>錯誤訊息結構不一致</li>
           </ul>
         </WrapLayout>
         <WrapLayout>
@@ -27,6 +27,7 @@ function BakendSection() {
           <h5 className="text-h5 mb-1">常見問題</h5>
           <ul className="pl-5 list-disc mb-4">
             <li>UI畫面是年月日後端卻要求補時分秒</li>
+            <li>回傳民國年，卻要求送西元年</li>
           </ul>
           <div className="grid grid-cols-2 gap-x-4">
             <div>
@@ -275,7 +276,23 @@ function BakendSection() {
               </tr>
               <tr>
                 <td>Base64</td>
-                <td>適合小型檔案，將檔案轉為字串格式</td>
+                <td>
+                  <p className="mb-1">適合小型檔案，將檔案轉為字串格式</p>
+                  <p className="font-bold">回傳範例格式:</p>
+                  <div className="w-[650px]">
+                    <AppCodePanel>
+                      {`{
+    "statusCode": "200",
+    "messageCode": null,
+    "message": "執行成功",
+    "data": {
+        "exportFileData": "77u/LCwsLCzlpKfkuovntIDos4fmlpnmmI....,
+        "exportFileName": "大事紀資料明細資料表.csv",
+    }
+}`}
+                    </AppCodePanel>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </AppFormTable>
@@ -379,7 +396,7 @@ function BakendSection() {
           </ul>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="font-bold">回傳內容</p>
+              <p className="font-bold mb-1">回傳內容</p>
               <AppCodePanel>
                 {`{
   "statusCode": "200",
@@ -392,7 +409,7 @@ function BakendSection() {
               </AppCodePanel>
             </div>
             <div>
-              <p className="font-bold">新增/編輯內容</p>
+              <p className="font-bold mb-1">新增/編輯內容</p>
               <AppCodePanel>
                 {`{
   "data": {
